@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>🤡ZLOG</title>
+</head>
+<body>
+
+<div class="header">
+    <div class="pageName">
+        🤡ZLOG
+    </div>
+
+    <!-- TODO 검색 칸 생성 필요 -->
+
+
+</div>
+
+<div class="body">
+
+    <div class="list" th:each="board : ${boards}">
+
+        <p>[[${board.title}]]</p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
