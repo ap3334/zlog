@@ -6,10 +6,7 @@ import jung.project.zlog.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +41,16 @@ public class BoardController {
         // TODO 글 등록 alert 창 생성 기능 구현 필요
 
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/modify/{id}")
+    public String boardModify(Model model, @PathVariable("id") int id) {
+
+        BoardDto board = boardService.showBoardDetail(id);
+
+        model.addAttribute("board", board);
+
+        return "/board/modify";
     }
 
 }

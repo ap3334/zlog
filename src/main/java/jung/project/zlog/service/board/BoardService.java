@@ -13,6 +13,8 @@ public interface BoardService {
 
     Integer save(BoardDto dto);
 
+    BoardDto showBoardDetail(int id);
+
     default Board dtoToEntity (BoardDto dto) {
 
         Board entity = Board.builder()
@@ -38,5 +40,6 @@ public interface BoardService {
         return dto;
 
     }
+
 
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,5 +38,20 @@ public class BoardServiceImpl implements BoardService{
 
         return board.getId();
     }
+
+    @Override
+    public BoardDto showBoardDetail(int id) {
+
+        Optional<Board> foundBoard = boardRepository.findById(id);
+
+        if (foundBoard.isEmpty()) {
+            return null;
+        }
+        else {
+            return entityToDto(foundBoard.get());
+        }
+
+    }
+
 
 }
