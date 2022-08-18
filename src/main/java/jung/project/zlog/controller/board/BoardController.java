@@ -53,4 +53,13 @@ public class BoardController {
         return "/board/modify";
     }
 
+    // TODO Post Mapping으로 수정 필요
+    @GetMapping("/delete/{id}")
+    public String boardDelete(@PathVariable("id") int id) {
+
+        boardService.deleteBoard(id);
+
+        return "redirect:/board/list";
+    }
+
 }

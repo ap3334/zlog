@@ -15,6 +15,8 @@ public interface BoardService {
 
     BoardDto showBoardDetail(int id);
 
+    void deleteBoard(int id);
+
     default Board dtoToEntity (BoardDto dto) {
 
         Board entity = Board.builder()
@@ -40,6 +42,7 @@ public interface BoardService {
         return dto;
 
     }
+
 
 
 }
