@@ -18,7 +18,9 @@
 
 <div class="body">
 
-    <form method="post">
+    <form method="post" action="/board/modify">
+
+        <input type="hidden" name="id" th:value="${board.id}">
 
         <div class="title">
 
@@ -36,7 +38,7 @@
 
         <div class="button">
 
-            <button type="submit">수정</button>
+            <button type="submit">저장</button>
 
             <!-- TODO 목록 버튼 기능 구현 -->
             <button type="button">목록</button>

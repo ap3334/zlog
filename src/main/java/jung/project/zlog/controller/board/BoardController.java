@@ -33,10 +33,10 @@ public class BoardController {
         return "/board/write";
     }
 
-    @PostMapping("/write")
+    @PostMapping({"/write", "/modify"})
     public String boardSave(BoardDto dto) {
 
-        Integer id = boardService.save(dto);
+        boardService.save(dto);
 
         // TODO 글 등록 alert 창 생성 기능 구현 필요
 
