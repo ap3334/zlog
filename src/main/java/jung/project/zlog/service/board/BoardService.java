@@ -2,7 +2,6 @@ package jung.project.zlog.service.board;
 
 import jung.project.zlog.dto.board.BoardDto;
 import jung.project.zlog.entity.board.Board;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +10,8 @@ import java.util.List;
 public interface BoardService {
 
     List<BoardDto> getList();
+
+    Integer save(BoardDto dto);
 
     default Board dtoToEntity (BoardDto dto) {
 

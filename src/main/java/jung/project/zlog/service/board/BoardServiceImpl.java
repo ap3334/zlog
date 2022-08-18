@@ -29,4 +29,13 @@ public class BoardServiceImpl implements BoardService{
         }).collect(Collectors.toList());
 
     }
+
+    @Override
+    public Integer save(BoardDto dto) {
+
+        Board board = boardRepository.save(dtoToEntity(dto));
+
+        return board.getId();
+    }
+
 }
