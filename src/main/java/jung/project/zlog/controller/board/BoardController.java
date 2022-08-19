@@ -36,11 +36,11 @@ public class BoardController {
     @PostMapping({"/write", "/modify"})
     public String boardSave(BoardDto dto) {
 
-        boardService.save(dto);
+        Integer savedBoard = boardService.save(dto);
 
         // TODO 글 등록 alert 창 생성 기능 구현 필요
 
-        return "redirect:/board/list";
+        return "redirect:/board/detail/" + savedBoard;
     }
 
     @GetMapping("/modify/{id}")
@@ -60,6 +60,17 @@ public class BoardController {
         boardService.deleteBoard(id);
 
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String showBoardDetail(@PathVariable("id") int id, Model model) {
+
+        BoardDto board = boardService.showBoardDetail(id);
+
+        model.addAttribute("board", board);
+
+        return "/board/detail";
+
     }
 
 }
