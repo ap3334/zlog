@@ -28,6 +28,8 @@
     <div class="list" th:each="board : ${boards}">
 
         <p>[[${board.title}]]</p>
+        <button type="button" class="modifyBtn">수정</button>
+        <button type="button" class="removeBtn">삭제</button>
 
     </div>
 
