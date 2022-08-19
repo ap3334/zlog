@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.tymeleaf.org">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <title>🤡ZLOG</title>
@@ -20,7 +22,7 @@
 
     <form method="post" action="/board/modify">
 
-        <input type="hidden" name="id" th:value="${board.id}">
+        <input class="boardId" type="hidden" name="id" th:value="${board.id}">
 
         <div class="title">
 
@@ -42,11 +44,27 @@
 
             <a th:href="@{/board/list}"><button type="button">목록</button></a>
 
-            <a th:href="@{/board/delete/{id}(id = ${board.id})}"><button type="button">삭제</button></a>
+            <button type="button" class="removeBtn">삭제</button>
 
         </div>
 
     </form>
+
+    <script th:inline="javascript">
+
+        var actionForm = $("form");
+        var id = $(".boardId").val();
+
+        $(".removeBtn").click(function () {
+
+            actionForm.attr("action", "/board/delete/" + id)
+                .attr("method", "post");
+
+            actionForm.submit();
+
+        })
+
+    </script>
 
 </div>
 
