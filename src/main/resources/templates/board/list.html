@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.tymeleaf.org">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <title>🤡ZLOG</title>
@@ -28,12 +30,13 @@
     <div class="list" th:each="board : ${boards}">
 
         <p>[[${board.title}]]</p>
-        <button type="button" class="modifyBtn">수정</button>
-        <button type="button" class="removeBtn">삭제</button>
+        <a th:href="@{/board/modify/{id}(id = ${board.id})}"><button type="button" class="modifyBtn">수정</button></a>
+        <a th:href="@{/board/delete/{id}(id = ${board.id})}"><button type="button" class="removeBtn">삭제</button></a>
 
     </div>
 
 </div>
+
 
 </body>
 </html>
