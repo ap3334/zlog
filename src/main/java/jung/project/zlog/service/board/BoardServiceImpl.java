@@ -32,6 +32,15 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public List<BoardDto> getListBySearch(String keyword) {
+
+        return boardRepository.findBoardByTitleContaining(keyword).stream().map(
+                board -> entityToDto(board)
+        ).collect(Collectors.toList());
+
+    }
+
+    @Override
     public Integer save(BoardDto dto) {
 
         Board board = boardRepository.save(dtoToEntity(dto));

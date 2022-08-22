@@ -16,4 +16,6 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 
     List<Board> findAll(Sort sort);
 
+    List<Board> findBoardByTitleContaining(String keyword);
+
 }

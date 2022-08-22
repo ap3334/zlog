@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,11 +19,18 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/list")
-    public String boardList(Model model) {
+    public String boardList(Model model, @RequestParam(value = "keyword", required = false) String keyword) {
 
-        List<BoardDto> boards = boardService.getList();
+        List<BoardDto> boards = new ArrayList<>();
+
+        if (keyword != null) {
+            boards = boardService.getListBySearch(keyword);
+        } else {
+            boards = boardService.getList();
+        }
 
         model.addAttribute("boards", boards);
+
 
         return "/board/list";
     }

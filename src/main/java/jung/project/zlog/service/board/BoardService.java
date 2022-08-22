@@ -11,6 +11,8 @@ public interface BoardService {
 
     List<BoardDto> getList();
 
+    List<BoardDto> getListBySearch(String keyword);
+
     Integer save(BoardDto dto);
 
     BoardDto showBoardDetail(int id);
@@ -42,7 +44,5 @@ public interface BoardService {
         return dto;
 
     }
-
-
 
 }
