@@ -38,6 +38,7 @@ body .header {
     justify-content: space-between;
     color: black;
     padding-top: 50px;
+    min-height: 140px;
 }
 
 body .header .page-name {
@@ -87,6 +88,11 @@ body .body .list .board-title {
     display: flex;
     align-items: center;
     margin: 10px;
+}
+
+body .body .list .board-title:hover {
+    background-color: gray;
+    color: floralwhite;
 }
 
 body .body .list .board-title p {

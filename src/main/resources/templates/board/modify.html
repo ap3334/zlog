@@ -12,46 +12,48 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="page-name">
-        🤡ZLOG
+<div class="container">
+
+    <div class="header">
+        <div class="page-name">
+            🤡 ZLOG  🤡
+        </div>
+
     </div>
 
-    <!-- TODO 구분선 필요 -->
+    <hr class="header-line">
 
+    <div class="body">
 
-</div>
+        <form method="post" action="/board/modify" class="input-form">
 
-<div class="body">
+            <input type="hidden" name="id" th:value="${board.id}">
 
-    <form method="post" action="/board/modify">
+            <div class="title">
 
-        <input type="hidden" name="id" th:value="${board.id}">
+                <p>제목</p>
+                <input type="text" name="title" th:value="${board.title}">
 
-        <div class="title">
+            </div>
 
-            <p>제목</p>
-            <input type="text" name="title" th:value="${board.title}">
+            <div class="content">
 
-        </div>
+                <p>내용</p>
+                <textarea name="content" cols="30" rows="10">[[${board.content}]]</textarea>
 
-        <div class="content">
+            </div>
 
-            <p>내용</p>
-            <textarea name="content" cols="30" rows="10">[[${board.content}]]</textarea>
+            <div class="button">
 
-        </div>
+                <button type="submit">저장</button>
 
-        <div class="button">
+                <a th:href="@{/board/list}"><button type="button">목록</button></a>
 
-            <button type="submit">저장</button>
+            </div>
 
-            <a th:href="@{/board/list}"><button type="button">목록</button></a>
+        </form>
 
-        </div>
-
-    </form>
-
+    </div>
 </div>
 
 </body>

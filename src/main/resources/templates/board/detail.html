@@ -13,65 +13,66 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="page-name">
-        🤡ZLOG
+<div class="container">
+
+    <div class="header">
+        <div class="page-name">
+            🤡 ZLOG  🤡
+        </div>
+
     </div>
 
-    <!-- TODO 구분선 필요 -->
+    <hr class="header-line">
 
+    <div class="body">
 
+        <form method="post" action="/board/modify" class="input-form">
+
+            <input class="boardId" type="hidden" name="id" th:value="${board.id}">
+
+            <div class="title">
+
+                <p>제목</p>
+                <input type="text" name="title" th:value="${board.title}" readonly>
+
+            </div>
+
+            <div class="content">
+
+                <p>내용</p>
+                <textarea name="content" cols="30" rows="10" readonly>[[${board.content}]]</textarea>
+
+            </div>
+
+            <div class="button">
+
+                <a th:href="@{/board/modify/{id}(id = ${board.id})}"><button type="button">수정</button></a>
+
+                <a th:href="@{/board/list}"><button type="button">목록</button></a>
+
+                <button type="button" class="removeBtn">삭제</button>
+
+            </div>
+
+        </form>
+
+        <script th:inline="javascript">
+
+            var actionForm = $("form");
+            var id = $(".boardId").val();
+
+            $(".removeBtn").click(function () {
+
+                actionForm.attr("action", "/board/delete/" + id)
+                    .attr("method", "post");
+
+                actionForm.submit();
+
+            })
+
+        </script>
+
+    </div>
 </div>
-
-<div class="body">
-
-    <form method="post" action="/board/modify">
-
-        <input class="boardId" type="hidden" name="id" th:value="${board.id}">
-
-        <div class="title">
-
-            <p>제목</p>
-            <input type="text" name="title" th:value="${board.title}" readonly>
-
-        </div>
-
-        <div class="content">
-
-            <p>내용</p>
-            <textarea name="content" cols="30" rows="10" readonly>[[${board.content}]]</textarea>
-
-        </div>
-
-        <div class="button">
-
-            <a th:href="@{/board/modify/{id}(id = ${board.id})}"><button type="submit">수정</button></a>
-
-            <a th:href="@{/board/list}"><button type="button">목록</button></a>
-
-            <button type="button" class="removeBtn">삭제</button>
-
-        </div>
-
-    </form>
-
-    <script th:inline="javascript">
-
-        var actionForm = $("form");
-        var id = $(".boardId").val();
-
-        $(".removeBtn").click(function () {
-
-            actionForm.attr("action", "/board/delete/" + id)
-                .attr("method", "post");
-
-            actionForm.submit();
-
-        })
-
-    </script>
-
-</div>
-
 </body>
 </html>

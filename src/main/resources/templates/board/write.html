@@ -12,42 +12,46 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="page-name">
-        🤡ZLOG
+<div class="container">
+
+    <div class="header">
+        <div class="page-name">
+            🤡 ZLOG  🤡
+        </div>
+
     </div>
 
-    <!-- TODO 구분선 필요 -->
+    <hr class="header-line">
 
-</div>
+    <div class="body">
 
-<div class="body">
+        <form method="post" class="input-form">
 
-    <form method="post">
+            <div class="title">
 
-        <div class="title">
+                <p>제목</p>
+                <input type="text" name="title" class="title-input">
 
-            <p>제목</p>
-            <input type="text" name="title">
+            </div>
 
-        </div>
+            <div class="content">
 
-        <div class="content">
+                <p>내용</p>
+                <textarea name="content" cols="30" rows="10" class="content-input"></textarea>
 
-            <p>내용</p>
-            <textarea name="content" cols="30" rows="10"></textarea>
+            </div>
 
-        </div>
+            <div class="button">
 
-        <div class="button">
+                <button type="submit">저장</button>
 
-            <button type="submit">저장</button>
+                <a th:href="@{/board/list}"><button type="button">목록</button></a>
 
-            <a th:href="@{/board/list}"><button type="button">목록</button></a>
+            </div>
 
-        </div>
+        </form>
 
-    </form>
+    </div>
 
 </div>
 
