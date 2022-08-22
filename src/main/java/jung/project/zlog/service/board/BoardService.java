@@ -2,6 +2,7 @@ package jung.project.zlog.service.board;
 
 import jung.project.zlog.dto.board.BoardDto;
 import jung.project.zlog.entity.board.Board;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +10,9 @@ import java.util.List;
 @Service
 public interface BoardService {
 
-    List<BoardDto> getList();
+    Page<BoardDto> getList(int page);
 
-    List<BoardDto> getListBySearch(String keyword);
+    Page<BoardDto> getListBySearch(int page, String keyword);
 
     Integer save(BoardDto dto);
 

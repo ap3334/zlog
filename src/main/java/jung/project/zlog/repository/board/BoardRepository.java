@@ -1,6 +1,8 @@
 package jung.project.zlog.repository.board;
 
 import jung.project.zlog.entity.board.Board;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,8 +16,8 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 //    @Query("select b from Board b order by b.regDate desc")
 //    List<Board> findAllSorted();
 
-    List<Board> findAll(Sort sort);
+    Page<Board> findAll(Pageable pageable);
 
-    List<Board> findBoardByTitleContaining(String keyword);
+    Page<Board> findBoardByTitleContaining(Pageable pageable, String keyword);
 
 }

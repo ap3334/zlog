@@ -4,6 +4,9 @@ import jung.project.zlog.dto.board.BoardDto;
 import jung.project.zlog.entity.board.Board;
 import jung.project.zlog.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -19,24 +22,27 @@ public class BoardServiceImpl implements BoardService{
 
 
     @Override
-    public List<BoardDto> getList() {
+    public Page<BoardDto> getList(int page) {
 
-        return boardRepository.findAll(Sort.by("regDate").descending()).stream().map(board -> {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by("regDate").descending());
 
-//        return boardRepository.findAllSorted().stream().map(board -> {
+        return boardRepository.findAll(pageable).map(board -> {
+
             BoardDto dto = entityToDto(board);
 
             return dto;
-        }).collect(Collectors.toList());
+        });
 
     }
 
     @Override
-    public List<BoardDto> getListBySearch(String keyword) {
+    public Page<BoardDto> getListBySearch(int page, String keyword) {
 
-        return boardRepository.findBoardByTitleContaining(keyword).stream().map(
+        Pageable pageable = PageRequest.of(page, 10, Sort.by("regDate").descending());
+
+        return boardRepository.findBoardByTitleContaining(pageable, keyword).map(
                 board -> entityToDto(board)
-        ).collect(Collectors.toList());
+        );
 
     }
 
