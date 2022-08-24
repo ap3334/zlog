@@ -1,6 +1,10 @@
 package jung.project.zlog.entity.board;
 
+import jung.project.zlog.entity.BaseEntity;
+import jung.project.zlog.entity.user.User;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
@@ -10,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Builder
-@ToString
+@ToString(exclude = "user")
 public class Board extends BaseEntity {
 
     @Id
@@ -22,5 +26,12 @@ public class Board extends BaseEntity {
 
     @Lob
     private String content;
+
+    @ColumnDefault("0")
+    private int clickCnt;
+
+    @ManyToOne
+    private User user;
+
 
 }

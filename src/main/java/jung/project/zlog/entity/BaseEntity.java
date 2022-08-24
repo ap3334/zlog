@@ -1,4 +1,4 @@
-package jung.project.zlog.entity.board;
+package jung.project.zlog.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

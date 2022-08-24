@@ -25,4 +25,8 @@ public class BoardDto {
 
     private LocalDateTime modDate;
 
+    private String username;
+
+    private int clickCnt;
+
 }
