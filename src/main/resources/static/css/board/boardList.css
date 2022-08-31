@@ -57,7 +57,15 @@ body .header .search-group * {
 }
 
 body .header .write-btn-area {
-    margin: 20px;
+    margin: 20px 5px;
+}
+
+body .header .login-btn-area {
+    margin: 20px 5px;
+}
+
+body .header .join-btn-area {
+    margin: 20px 5px;
 }
 
 body .header-line {
