@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService{
     private final BCryptPasswordEncoder encoder;
 
 
+    // transaction을 걸 필요가 있나?
     @Override
     public int saveUser(UserDto userDto) {
 

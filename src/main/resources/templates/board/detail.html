@@ -26,7 +26,7 @@
 
     <div class="body">
 
-        <form method="post" action="/board/modify" class="input-form">
+        <form method="post" action="/auth/board/modify" class="input-form">
 
             <input class="boardId" type="hidden" name="id" th:value="${board.id}">
 
@@ -46,7 +46,7 @@
 
             <div class="button">
 
-                <a th:href="@{/board/modify/{id}(id = ${board.id})}"><button type="button">수정</button></a>
+                <a th:href="@{/auth/board/modify/{id}(id = ${board.id})}"><button type="button">수정</button></a>
 
                 <a th:href="@{/board/list}"><button type="button">목록</button></a>
 
@@ -63,7 +63,7 @@
 
             $(".removeBtn").click(function () {
 
-                actionForm.attr("action", "/board/delete/" + id)
+                actionForm.attr("action", "/auth/board/delete/" + id)
                     .attr("method", "post");
 
                 actionForm.submit();
