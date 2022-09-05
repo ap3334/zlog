@@ -2,6 +2,7 @@ package jung.project.zlog.service.board;
 
 import jung.project.zlog.dto.board.BoardDto;
 import jung.project.zlog.entity.board.Board;
+import jung.project.zlog.entity.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +21,7 @@ public interface BoardService {
 
     void deleteBoard(int id);
 
-    default Board dtoToEntity (BoardDto dto) {
 
-        Board entity = Board.builder()
-                .id(dto.getId())
-                .title(dto.getTitle())
-                .content(dto.getContent())
-                .build();
-
-        return entity;
-
-    }
 
     default BoardDto entityToDto (Board entity) {
 
@@ -40,6 +31,7 @@ public interface BoardService {
                 .content(entity.getContent())
                 .regDate(entity.getRegDate())
                 .modDate(entity.getModDate())
+                .username(entity.getUser().getUsername())
                 .build();
 
         return dto;

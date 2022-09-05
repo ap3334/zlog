@@ -46,13 +46,8 @@
         <div class="list" th:each="board : ${boards}">
 
             <a th:href="@{/board/detail/{id}(id=${board.id})}" class="board-title">
-                <p>[[${board.title}]]</p>
+                <p>[[${board.title}]] ------------------------- [[${board.username}]]</p>
             </a>
-
-            <div class="board-btn-group">
-                <a th:href="@{/auth/board/modify/{id}(id = ${board.id})}"><button type="button" class="modify-btn">Modify</button></a>
-                <button type="button" class="remove-btn">DELETE</button>
-            </div>
 
         </div>
 
@@ -73,22 +68,6 @@
 
     </div>
 </div>
-
-<script th:inline="javascript">
-
-    var actionForm = $("form");
-    var id = $(".boardId").val();
-
-    $(".removeBtn").click(function () {
-
-        actionForm.attr("action", "/auth/board/delete/" + id)
-            .attr("method", "post");
-
-        actionForm.submit();
-
-    })
-
-</script>
 
 
 </body>

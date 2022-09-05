@@ -2,12 +2,15 @@ package jung.project.zlog.service.board;
 
 import jung.project.zlog.dto.board.BoardDto;
 import jung.project.zlog.entity.board.Board;
+import jung.project.zlog.entity.user.User;
 import jung.project.zlog.repository.board.BoardRepository;
+import jung.project.zlog.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +22,8 @@ import java.util.stream.Collectors;
 public class BoardServiceImpl implements BoardService{
 
     private final BoardRepository boardRepository;
+
+    private final UserRepository userRepository;
 
 
     @Override
@@ -73,5 +78,19 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.deleteById(id);
     }
 
+    private Board dtoToEntity (BoardDto dto) {
+
+        User user = userRepository.findByUsername(dto.getUsername()).orElseThrow(() -> new UsernameNotFoundException("해당 유저는 존재하지 않습니다."));
+
+        Board entity = Board.builder()
+                .id(dto.getId())
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .user(user)
+                .build();
+
+        return entity;
+
+    }
 
 }
