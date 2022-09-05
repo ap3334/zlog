@@ -1,10 +1,12 @@
 package jung.project.zlog.controller.board;
 
+import jung.project.zlog.config.auth.PrincipalDetails;
 import jung.project.zlog.dto.board.BoardDto;
 import jung.project.zlog.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +53,15 @@ public class BoardAuthController {
         return "redirect:/board/list";
     }
 
+    @GetMapping("/detail/{id}")
+    public String showBoardDetail(@PathVariable("id") int id, Model model, @AuthenticationPrincipal PrincipalDetails principal) {
 
+        BoardDto board = boardService.showBoardDetail(id);
+
+        model.addAttribute("board", board);
+        model.addAttribute("principal", principal);
+
+        return "/board/detail";
+
+    }
 }

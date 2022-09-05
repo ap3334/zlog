@@ -48,11 +48,15 @@
 
             <div class="button">
 
-                <a th:href="@{/auth/board/modify/{id}(id = ${board.id})}"><button type="button">수정</button></a>
+                <th:block  th:if="${board.username == principal.username}">
+                    <a th:href="@{/auth/board/modify/{id}(id = ${board.id})}"><button type="button">수정</button></a>
+                </th:block>
 
                 <a th:href="@{/board/list}"><button type="button">목록</button></a>
 
-                <button type="button" class="removeBtn">삭제</button>
+                <th:block  th:if="${board.username == principal.username}">
+                    <button type="button" class="remove-btn">삭제</button>
+                </th:block>
 
             </div>
 
@@ -63,7 +67,7 @@
             var actionForm = $("form");
             var id = $(".boardId").val();
 
-            $(".removeBtn").click(function () {
+            $(".remove-btn").click(function () {
 
                 actionForm.attr("action", "/auth/board/delete/" + id)
                     .attr("method", "post");

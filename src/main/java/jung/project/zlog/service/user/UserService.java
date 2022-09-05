@@ -8,6 +8,9 @@ public interface UserService {
 
     int saveUser(UserDto userDto);
 
+    UserDto getUserByUsername(String username);
+
+
     default User dtoToEntity(UserDto dto) {
 
         User entity = User.builder()
@@ -22,4 +25,20 @@ public interface UserService {
 
         return entity;
     }
+
+    default UserDto entityToDto(User entity) {
+
+        UserDto dto = UserDto.builder()
+                .id(entity.getId())
+                .username(entity.getUsername())
+                .password(entity.getPassword())
+                .email(entity.getEmail())
+                .age(entity.getAge())
+                .gender(entity.getGender())
+                .role(entity.getRole())
+                .build();
+
+        return dto;
+    }
+
 }
