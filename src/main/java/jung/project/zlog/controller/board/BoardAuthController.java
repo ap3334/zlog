@@ -28,11 +28,14 @@ public class BoardAuthController {
     @PostMapping({"/write", "/modify"})
     public String boardSave(BoardDto dto) {
 
+        System.out.println(dto);
         Integer savedBoard = boardService.save(dto);
+
+        System.out.println(savedBoard);
 
         // TODO 글 등록 alert 창 생성 기능 구현 필요
 
-        return "redirect:/board/detail/" + savedBoard;
+        return "redirect:/auth/board/detail/" + savedBoard;
     }
 
     @GetMapping("/modify/{id}")
